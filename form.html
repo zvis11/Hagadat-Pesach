@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ההגדה שלנו – מילוי קבוצה</title>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;700;900&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D98A;
+    --wine: #6B2737;
+    --wine-light: #9B3F52;
+    --cream: #FAF6EF;
+    --cream-dark: #F0E8D8;
+    --text: #2A1A1F;
+    --text-muted: #7A5F65;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .page {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--gold-light);
+  }
+
+  .header-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .header h1 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--wine);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .header p {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(107,39,55,0.08);
+    margin-bottom: 1rem;
+  }
+
+  .card-top {
+    background: var(--wine);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .card-emoji {
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .card-top-text {}
+
+  .card-motif {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--gold-light);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .card-title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .card-quote {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .field {
+    margin-bottom: 1.2rem;
+  }
+
+  .field:last-child { margin-bottom: 0; }
+
+  .field label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .field input[type="text"],
+  .field textarea {
+    width: 100%;
+    border: 1.5px solid var(--cream-dark);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-family: 'Heebo', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    transition: border-color 0.2s;
+    resize: none;
+  }
+
+  .field input[type="text"]:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--wine-light);
+    background: white;
+  }
+
+  .group-select-section {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 20px rgba(107,39,55,0.08);
+    margin-bottom: 1.5rem;
+  }
+
+  .group-select-section label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .group-select-section select {
+    width: 100%;
+    border: 1.5px solid var(--cream-dark);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-family: 'Heebo', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .group-select-section select:focus {
+    outline: none;
+    border-color: var(--wine-light);
+  }
+
+  .submit-btn {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 16px;
+    background: var(--wine);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .submit-btn:hover { background: var(--wine-light); }
+  .submit-btn:active { transform: scale(0.98); }
+  .submit-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(107,39,55,0.08);
+  }
+
+  .success-screen .big-emoji { font-size: 48px; margin-bottom: 1rem; }
+
+  .success-screen h2 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.8rem;
+    color: var(--wine);
+    margin-bottom: 0.5rem;
+  }
+
+  .success-screen p {
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    font-size: 18px;
+    margin: 1.5rem 0;
+    letter-spacing: 0.3em;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-eyebrow">פסח תשפ״ו</div>
+    <h1>ההגדה שלנו</h1>
+    <p>מלאו את הכרטיסייה של הקבוצה שלכם</p>
+  </div>
+
+  <div id="form-area">
+    <div class="group-select-section">
+      <label for="group-select">בחרו את הכרטיסייה של הקבוצה שלכם:</label>
+      <select id="group-select" onchange="showCard(this.value)">
+        <option value="">— בחרו כרטיסייה —</option>
+        <option value="לחם עוני">🫓 לחם עוני</option>
+        <option value="מה נשתנה">🤔 מה נשתנה</option>
+        <option value="עבדות לחירות">⛓️ עבדות לחירות</option>
+        <option value="ארבעה בנים">👦 ארבעה תלמידים</option>
+        <option value="לשנה הבאה">🌅 לשנה הבאה</option>
+      </select>
+    </div>
+
+    <div id="cards-container"></div>
+
+    <button class="submit-btn" id="submit-btn" onclick="submitForm()" style="display:none">
+      שלחו לשולחן הסדר ✦
+    </button>
+  </div>
+
+  <div class="success-screen" id="success-screen">
+    <div class="big-emoji">🍷</div>
+    <h2>תודה!</h2>
+    <p>הכרטיסייה שלכם הצטרפה להגדה</p>
+    <div class="ornament">✦ ✦ ✦</div>
+    <p style="font-size:13px; color:#aaa">תוכלו לסגור את החלון הזה</p>
+  </div>
+
+</div>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby0BWJ0KAetYAu2eXBq6pPr2OElkf-7j1mi4GRVsmlCUVrpugXE8EKefCZPN8JoTCh7/exec";
+
+const cards = {
+  "לחם עוני": {
+    emoji: "🫓",
+    motif: "לחם עוני",
+    title: "זה הלחם העוני שאכלנו",
+    quote: "הא לחמא עניא די אכלו אבהתנא...",
+    lines: [
+      "השנה לימדנו בלי...",
+      "זה היה קשה / מצחיק / מוזר כי...",
+      "אבל בסוף הבנו ש..."
+    ]
+  },
+  "מה נשתנה": {
+    emoji: "🤔",
+    motif: "מה נשתנה",
+    title: "מה נשתנה השנה הזו",
+    quote: "מה נשתנה הלילה הזה מכל הלילות?",
+    lines: [
+      "בכל השנים אנחנו ___ – השנה...",
+      "בכל השנים התלמידים ___ – השנה...",
+      "בכל השנים ישנים טוב בלילה – השנה..."
+    ]
+  },
+  "עבדות לחירות": {
+    emoji: "⛓️",
+    motif: "עבדות לחירות",
+    title: "מעבדות לחירות",
+    quote: "מעבדות לחירות, מיגון לשמחה...",
+    lines: [
+      "ה'מצרים' שלנו השנה היה...",
+      "הרגע שיצאנו משם היה כש...",
+      "הדבר שעדיין לא יצאנו ממנו הוא..."
+    ]
+  },
+  "ארבעה בנים": {
+    emoji: "👦",
+    motif: "ארבעה בנים",
+    title: "ארבעה תלמידים",
+    quote: "אחד חכם, אחד רשע, אחד תם, ואחד שאינו יודע לשאול",
+    lines: [
+      "התלמיד/ה החכם השנה היה זה ש...",
+      "זה שאינו יודע לשאול עמד מולנו כש...",
+      "ואנחנו המורים – הרגשנו כמו ה___ שבהם"
+    ]
+  },
+  "לשנה הבאה": {
+    emoji: "🌅",
+    motif: "לשנה הבאה",
+    title: "לשנה הבאה בירושלים",
+    quote: "לשנה הבאה בירושלים בנויה",
+    lines: [
+      "לשנה הבאה אנחנו מבקשים...",
+      "את זה אנחנו רוצים להשאיר מאחור:",
+      "ואת זה לוקחים איתנו:"
+    ]
+  }
+};
+
+function showCard(val) {
+  const container = document.getElementById('cards-container');
+  const btn = document.getElementById('submit-btn');
+  if (!val) { container.innerHTML = ''; btn.style.display = 'none'; return; }
+  const c = cards[val];
+  container.innerHTML = `
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">${c.emoji}</div>
+        <div class="card-top-text">
+          <div class="card-motif">${c.motif}</div>
+          <div class="card-title">${c.title}</div>
+          <div class="card-quote">${c.quote}</div>
+        </div>
+      </div>
+      <div class="card-body">
+        ${c.lines.map((line, i) => `
+          <div class="field">
+            <label>${line}</label>
+            <input type="text" id="line${i+1}" placeholder="כתבו כאן..." />
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  btn.style.display = 'block';
+}
+
+async function submitForm() {
+  const group = document.getElementById('group-select').value;
+  const line1 = document.getElementById('line1').value.trim();
+  const line2 = document.getElementById('line2').value.trim();
+  const line3 = document.getElementById('line3').value.trim();
+
+  if (!line1 && !line2 && !line3) {
+    alert('אנא מלאו לפחות שורה אחת');
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'שולח...';
+
+  const data = { group, motif: group, line1, line2, line3 };
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+  } catch(e) {}
+
+  document.getElementById('form-area').style.display = 'none';
+  document.getElementById('success-screen').style.display = 'block';
+}
+</script>
+</body>
+</html>
