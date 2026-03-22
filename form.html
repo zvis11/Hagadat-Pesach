@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -252,6 +253,11 @@
         <option value="עבדות לחירות">⛓️ עבדות לחירות</option>
         <option value="ארבעה בנים">👦 ארבעה תלמידים</option>
         <option value="לשנה הבאה">🌅 לשנה הבאה</option>
+        <option value="והגדת לבנך">📖 והגדת לבנך</option>
+        <option value="פרעה בפיג'מה">😄 פרעה בפיג'מה</option>
+        <option value='והקב"ה מצילנו'>✨ והקב"ה מצילנו</option>
+        <option value="מקוצר רוח">💙 מקוצר רוח</option>
+        <option value="דיינו">🙏 דיינו</option>
       </select>
     </div>
 
@@ -330,6 +336,51 @@ const cards = {
       "את זה אנחנו רוצים להשאיר מאחור:",
       "ואת זה לוקחים איתנו:"
     ]
+  },
+  "והגדת לבנך": {
+    emoji: "📖",
+    motif: "והגדת לבנך",
+    title: "והגדת לבנך",
+    quote: "והגדת לבנך ביום ההוא לאמר...",
+    lines: [
+      "מה מהתקופה האחרונה יהיה לך חשוב לספר לדורות הבאים גם בעוד הרבה שנים?"
+    ]
+  },
+  "פרעה בפיג'מה": {
+    emoji: "😄",
+    motif: "פרעה בפיג'מה",
+    title: "פרעה בפיג'מה באמצע הלילה",
+    quote: "ויקם פרעה לילה הוא וכל עבדיו...",
+    lines: [
+      "ספר על אירוע משעשע מתקופת המלחמה"
+    ]
+  },
+  "והקב\"ה מצילנו": {
+    emoji: "✨",
+    motif: "והקב\"ה מצילנו",
+    title: "והקב\"ה מצילנו מידם",
+    quote: "שבכל דור ודור עומדים עלינו... והקב\"ה מצילנו מידם",
+    lines: [
+      "אירוע מהחיים שבו הרגשת שנעשה לך או לאדם יקר לך נס"
+    ]
+  },
+  "מקוצר רוח": {
+    emoji: "💙",
+    motif: "מקוצר רוח",
+    title: "מקוצר רוח ומעבודה קשה",
+    quote: "ולא שמעו אל משה מקוצר רוח ומעבודה קשה",
+    lines: [
+      "מה קשה לך בתקופה הזו?"
+    ]
+  },
+  "דיינו": {
+    emoji: "🙏",
+    motif: "דיינו",
+    title: "דיינו",
+    quote: "כמה מעלות טובות למקום עלינו – דיינו!",
+    lines: [
+      "אירוע משמעותי במלחמה שרק עליו לבד היית אומר 'דיינו'"
+    ]
   }
 };
 
@@ -363,9 +414,12 @@ function showCard(val) {
 
 async function submitForm() {
   const group = document.getElementById('group-select').value;
-  const line1 = document.getElementById('line1').value.trim();
-  const line2 = document.getElementById('line2').value.trim();
-  const line3 = document.getElementById('line3').value.trim();
+  const el1 = document.getElementById('line1');
+  const el2 = document.getElementById('line2');
+  const el3 = document.getElementById('line3');
+  const line1 = el1 ? el1.value.trim() : '';
+  const line2 = el2 ? el2.value.trim() : '';
+  const line3 = el3 ? el3.value.trim() : '';
 
   if (!line1 && !line2 && !line3) {
     alert('אנא מלאו לפחות שורה אחת');
